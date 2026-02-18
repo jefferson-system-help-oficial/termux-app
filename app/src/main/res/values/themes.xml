@@ -4,19 +4,19 @@
      https://material.io/develop/android/theming/dark
     -->
 
-    <!-- TermuxApp Light DarkActionBar theme. -->
-    <style name="Theme.TermuxApp.Light.DarkActionBar" parent="Theme.BaseActivity.Light.DarkActionBar"/>
-    <!-- TermuxApp Light NoActionBar theme. -->
-    <style name="Theme.TermuxApp.Light.NoActionBar" parent="Theme.BaseActivity.Light.NoActionBar"/>
+    <!-- GoldBOXApp Light DarkActionBar theme. -->
+    <style name="Theme.GoldBOXApp.Light.DarkActionBar" parent="Theme.BaseActivity.Light.DarkActionBar"/>
+    <!-- GoldBOXApp Light NoActionBar theme. -->
+    <style name="Theme.GoldBOXApp.Light.NoActionBar" parent="Theme.BaseActivity.Light.NoActionBar"/>
 
-    <!-- TermuxApp DayNight DarkActionBar theme. -->
-    <style name="Theme.TermuxApp.DayNight.DarkActionBar" parent="Theme.BaseActivity.DayNight.DarkActionBar"/>
-    <!-- TermuxApp DayNight NoActionBar theme. -->
-    <style name="Theme.TermuxApp.DayNight.NoActionBar" parent="Theme.BaseActivity.DayNight.NoActionBar"/>
+    <!-- GoldBOXApp DayNight DarkActionBar theme. -->
+    <style name="Theme.GoldBOXApp.DayNight.DarkActionBar" parent="Theme.BaseActivity.DayNight.DarkActionBar"/>
+    <!-- GoldBOXApp DayNight NoActionBar theme. -->
+    <style name="Theme.GoldBOXApp.DayNight.NoActionBar" parent="Theme.BaseActivity.DayNight.NoActionBar"/>
 
 
-    <!-- TermuxActivity DayNight NoActionBar theme. -->
-    <style name="Theme.TermuxActivity.DayNight.NoActionBar" parent="Theme.TermuxApp.DayNight.NoActionBar">
+    <!-- GoldBOXActivity DayNight NoActionBar theme. -->
+    <style name="Theme.GoldBOXActivity.DayNight.NoActionBar" parent="Theme.GoldBOXApp.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/black</item>
@@ -35,9 +35,9 @@
         <item name="android:windowAllowEnterTransitionOverlap">true</item>
 
         <!-- Left drawer. -->
-        <item name="buttonBarButtonStyle">@style/TermuxActivity.Drawer.ButtonBarStyle.Light</item>
-        <item name="termuxActivityDrawerBackground">@color/white</item>
-        <item name="termuxActivityDrawerImageTint">@color/black</item>
+        <item name="buttonBarButtonStyle">@style/GoldBOXActivity.Drawer.ButtonBarStyle.Light</item>
+        <item name="goldboxActivityDrawerBackground">@color/white</item>
+        <item name="goldboxActivityDrawerImageTint">@color/black</item>
 
         <!-- Extra keys colors. -->
         <item name="extraKeysButtonTextColor">@color/white</item>

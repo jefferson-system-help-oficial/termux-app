@@ -4,23 +4,23 @@ plugins {
 
 ext {
     // The packageVariant defines the bootstrap variant that will be included in the app APK.
-    // This must be supported by com.termux.shared.termux.TermuxBootstrap.PackageVariant or app will
+    // This must be supported by com.goldbox.shared.goldbox.GoldBOXBootstrap.PackageVariant or app will
     // crash at startup.
     // Bootstrap of a different variant must not be manually installed by the user after app installation
     // by replacing $PREFIX since app code is dependant on the variant used to build the APK.
     // Currently supported values are: [ "apt-android-7" "apt-android-5" ]
-    packageVariant = System.getenv("TERMUX_PACKAGE_VARIANT") ?: "apt-android-7" // Default: "apt-android-7"
+    packageVariant = System.getenv("GOLDBOX_PACKAGE_VARIANT") ?: "apt-android-7" // Default: "apt-android-7"
 }
 
 android {
-    namespace "com.termux"
+    namespace "com.goldbox"
 
     compileSdkVersion project.properties.compileSdkVersion.toInteger()
     ndkVersion = System.getenv("JITPACK_NDK_VERSION") ?: project.properties.ndkVersion
-    def appVersionName = System.getenv("TERMUX_APP_VERSION_NAME") ?: ""
-    def apkVersionTag = System.getenv("TERMUX_APK_VERSION_TAG") ?: ""
-    def splitAPKsForDebugBuilds = System.getenv("TERMUX_SPLIT_APKS_FOR_DEBUG_BUILDS") ?: "1"
-    def splitAPKsForReleaseBuilds = System.getenv("TERMUX_SPLIT_APKS_FOR_RELEASE_BUILDS") ?: "0" // F-Droid does not support split APKs #1904
+    def appVersionName = System.getenv("GOLDBOX_APP_VERSION_NAME") ?: ""
+    def apkVersionTag = System.getenv("GOLDBOX_APK_VERSION_TAG") ?: ""
+    def splitAPKsForDebugBuilds = System.getenv("GOLDBOX_SPLIT_APKS_FOR_DEBUG_BUILDS") ?: "1"
+    def splitAPKsForReleaseBuilds = System.getenv("GOLDBOX_SPLIT_APKS_FOR_RELEASE_BUILDS") ?: "0" // F-Droid does not support split APKs #1904
 
     dependencies {
         implementation "androidx.annotation:annotation:1.9.0"
@@ -37,7 +37,7 @@ android {
         implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
 
         implementation project(":terminal-view")
-        implementation project(":termux-shared")
+        implementation project(":goldbox-shared")
     }
 
     defaultConfig {
@@ -49,16 +49,16 @@ android {
         if (appVersionName) versionName = appVersionName
         validateVersionName(versionName)
 
-        buildConfigField "String", "TERMUX_PACKAGE_VARIANT", "\"" + project.ext.packageVariant + "\"" // Used by TermuxApplication class
+        buildConfigField "String", "GOLDBOX_PACKAGE_VARIANT", "\"" + project.ext.packageVariant + "\"" // Used by GoldBOXApplication class
 
-        manifestPlaceholders.TERMUX_PACKAGE_NAME = "com.termux"
-        manifestPlaceholders.TERMUX_APP_NAME = "Termux"
-        manifestPlaceholders.TERMUX_API_APP_NAME = "Termux:API"
-        manifestPlaceholders.TERMUX_BOOT_APP_NAME = "Termux:Boot"
-        manifestPlaceholders.TERMUX_FLOAT_APP_NAME = "Termux:Float"
-        manifestPlaceholders.TERMUX_STYLING_APP_NAME = "Termux:Styling"
-        manifestPlaceholders.TERMUX_TASKER_APP_NAME = "Termux:Tasker"
-        manifestPlaceholders.TERMUX_WIDGET_APP_NAME = "Termux:Widget"
+        manifestPlaceholders.GOLDBOX_PACKAGE_NAME = "com.goldbox"
+        manifestPlaceholders.GOLDBOX_APP_NAME = "GoldBOX"
+        manifestPlaceholders.GOLDBOX_API_APP_NAME = "GoldBOX:API"
+        manifestPlaceholders.GOLDBOX_BOOT_APP_NAME = "GoldBOX:Boot"
+        manifestPlaceholders.GOLDBOX_FLOAT_APP_NAME = "GoldBOX:Float"
+        manifestPlaceholders.GOLDBOX_STYLING_APP_NAME = "GoldBOX:Styling"
+        manifestPlaceholders.GOLDBOX_TASKER_APP_NAME = "GoldBOX:Tasker"
+        manifestPlaceholders.GOLDBOX_WIDGET_APP_NAME = "GoldBOX:Widget"
 
         externalNativeBuild {
             ndkBuild {
@@ -132,10 +132,10 @@ android {
         variant.outputs.all { output ->
             if (variant.buildType.name == "debug") {
                 def abi = output.getFilter(com.android.build.OutputFile.ABI)
-                outputFileName = new File("termux-app_" + (apkVersionTag ? apkVersionTag : project.ext.packageVariant + "-" + "debug") + "_" + (abi ? abi : "universal") + ".apk")
+                outputFileName = new File("goldbox-app_" + (apkVersionTag ? apkVersionTag : project.ext.packageVariant + "-" + "debug") + "_" + (abi ? abi : "universal") + ".apk")
             } else if (variant.buildType.name == "release") {
                 def abi = output.getFilter(com.android.build.OutputFile.ABI)
-                outputFileName = new File("termux-app_" + (apkVersionTag ? apkVersionTag : project.ext.packageVariant + "-" + "release") + "_" + (abi ? abi : "universal") + ".apk")
+                outputFileName = new File("goldbox-app_" + (apkVersionTag ? apkVersionTag : project.ext.packageVariant + "-" + "release") + "_" + (abi ? abi : "universal") + ".apk")
             }
         }
     }
@@ -231,7 +231,7 @@ task downloadBootstraps() {
             downloadBootstrap("i686", "46dcfeb5eef67ba765498db9fe4c50dc4690805139aa0dd141a9d8ee0693cd27", version)
             downloadBootstrap("x86_64", "615b590679ee6cd885b7fd2ff9473c845e920f9b422f790bb158c63fe42b8481", version)
         } else {
-            throw new GradleException("Unsupported TERMUX_PACKAGE_VARIANT \"" + packageVariant + "\"")
+            throw new GradleException("Unsupported GOLDBOX_PACKAGE_VARIANT \"" + packageVariant + "\"")
         }
     }
 }
